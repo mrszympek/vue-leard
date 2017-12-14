@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        Type: {{ type }}
+        {{items}}
     </div>
 </template>
 
@@ -18,12 +18,13 @@
         methods: {
             fetchItems() {
                 this.items = []
+                this.type = this.$route.params.type
                 let initial_ids = [1, 13, 14]
 
                 for (let i in initial_ids) {
                     let id = initial_ids[i]
                     console.log('id', id)
-                    fetch(`http://swapi.co/api/${this.type}/${id}`, {method: 'GET', type: 'cors'})
+                    fetch(`https://swapi.co/api/${this.type}/${id}`, {method: 'GET', type: 'cors'})
                         .then(response => response.json())
                         .then(json => this.items.push(json))
                 }
